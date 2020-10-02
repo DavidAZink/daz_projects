@@ -1,11 +1,13 @@
+#YOU WILL NEED TO SET YOUR WORKING DIRECTORY TO THE LOCATION OF THE "df.rds" DATA FILE IN ORDER TO RUN THIS PROGRAM. You also may need to install the packages listed below:
 library(tidyverse)
 library(plm)
 library(gdata)
 library(data.table)
 library(mltools)
+#Change this working directory to the location of the data file on your local machine!
+setwd("C:/Users/dzink/Documents/fannie")
 
 #call in data, create some features, one hot encode factors
-setwd("C:/Users/dzink/Documents/fannie")
 df=readRDS('df.rds')
 dmy=one_hot(data.table(df[,c('first_home', 'units', 'occupancy', 'property_type', 'l_delinquent')] ))
 df=cbind(df[, !colnames(df) %in% c('first_home', 'units', 'occupancy', 'property_type', 'l_delinquent')], dmy)
